@@ -19,9 +19,9 @@ import (
 )
 
 var (
-	casURL      string
-	appAddr     string
-	authFile    string
+	casURL    string
+	appAddr   string
+	authFile  string
 	proxyAddr string
 )
 
@@ -68,9 +68,9 @@ func handle(w http.ResponseWriter, r *http.Request) {
 		},
 	}).Do(r)
 
-	 // This prints to STDOUT to show that processing has started
-	ctx := r.Context()                           
-	
+	// This prints to STDOUT to show that processing has started
+	ctx := r.Context()
+
 	select {
 	case <-time.After(1 * time.Second): // If we receive a message after 2 seconds
 		// that means the request has been processed
@@ -78,12 +78,12 @@ func handle(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			glog.Fatal(err)
 		}
-	
+
 		b, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			glog.Fatal(err)
 		}
-	
+
 		header := w.Header()
 		for key, value := range resp.Header {
 			for _, item := range value {
